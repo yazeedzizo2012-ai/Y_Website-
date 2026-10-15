@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZIZO | Car Parking</title>
+<style>
+:root{--bg:#0b1020;--panel:#131b2e;--panel2:#18233a;--text:#f5f7ff;--muted:#a7b2ca;--accent:#48d7ff;--accent2:#8b7cff;--line:#293550;--danger:#ff6b7a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#1b3150 0,transparent 35%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+.top{position:sticky;top:0;z-index:5;background:#0b1020eF;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.nav{max-width:1100px;margin:auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#08101e;font-size:23px}
+.nav-actions{display:flex;gap:8px;align-items:center}.btn{padding:10px 15px;border-radius:12px;font-weight:800;background:var(--accent);color:#07111c}.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.btn.danger{background:#49212d;color:#ffdce1}
+main{max-width:1100px;margin:auto;padding:26px 18px 60px}.hero{padding:32px 24px;border:1px solid #2b4563;border-radius:24px;background:linear-gradient(115deg,#152b43dd,#171b35ee);position:relative;overflow:hidden}.hero:after{content:"🏎️";position:absolute;left:22px;bottom:2px;font-size:94px;opacity:.18;transform:rotate(-8deg)}.tag{display:inline-block;color:var(--accent);font-size:13px;font-weight:bold;background:#173347;padding:7px 11px;border-radius:30px}.hero h1{font-size:clamp(27px,5vw,43px);line-height:1.4;margin:14px 0 8px;max-width:690px}.hero p{color:var(--muted);line-height:1.9;margin:0;max-width:620px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:28px 0 14px}.section-head h2{font-size:21px;margin:0}.count{color:var(--muted);font-size:13px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 20px}.filter{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:9px 13px;border-radius:30px}.filter.active{background:#17394a;color:var(--accent);border-color:#28647a}.grid{display:grid;grid-template-columns:1fr;gap:16px}.card{display:grid;grid-template-columns: minmax(0,1.05fr) minmax(0,1fr);direction:ltr;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;overflow:hidden;min-width:0;box-shadow:0 8px 24px #0002}.photo{min-height:250px;background:#0d1424;display:grid;place-items:center;color:#62718d;font-size:44px;overflow:hidden}.photo img{width:100%;height:100%;min-height:250px;object-fit:cover;display:block}.cardbody{direction:rtl;padding:18px;display:flex;flex-direction:column;justify-content:center;min-width:0}.type{display:inline-block;font-size:11px;padding:5px 8px;border-radius:20px;background:#26304b;color:#b9c9ff}.card h3{margin:10px 0 7px;font-size:18px}.desc{color:var(--muted);font-size:13px;line-height:1.7;min-height:22px}.price{font-size:19px;font-weight:900;color:var(--accent);margin-top:13px}.empty{padding:35px 15px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:18px;grid-column:1/-1}.footer{text-align:center;color:#74819c;font-size:12px;margin-top:38px}
+.modal{position:fixed;inset:0;background:#030712c9;z-index:10;display:none;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.dialog{width:min(680px,100%);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 20px 80px #0009}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.dialog h2{font-size:21px;margin:0}.close{width:35px;height:35px;border-radius:10px;background:var(--panel2);color:white;font-size:20px}.field{display:flex;flex-direction:column;gap:7px;margin-bottom:13px}.field label{font-size:13px;color:#c5cfe1}.field input,.field select,.field textarea{width:100%;background:#0b1222;border:1px solid var(--line);border-radius:11px;padding:12px;color:white;outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}.field textarea{min-height:75px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin-list{display:grid;gap:8px;margin-top:18px}.admin-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#0e1627;border:1px solid var(--line);padding:10px;border-radius:12px}.admin-row small{display:block;color:var(--muted);margin-top:4px}.hint{font-size:12px;color:var(--muted);line-height:1.7}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#e9fbff;color:#07111c;padding:12px 18px;border-radius:12px;font-weight:bold;display:none;z-index:30}
+@media(max-width:560px){.nav{padding:11px 12px}.brand{font-size:17px}.logo{width:37px;height:37px}.nav-actions .btn{padding:9px 10px;font-size:13px}main{padding:18px 12px 40px}.hero{padding:25px 17px}.hero:after{font-size:60px}.two{grid-template-columns:1fr}.grid{grid-template-columns:1fr;gap:12px}.card{grid-template-columns:minmax(0,0.92fr) minmax(0,1fr)}.photo,.photo img{min-height:220px}.cardbody{padding:11px}.card h3{font-size:15px;line-height:1.5}.desc{font-size:12px}.price{font-size:17px}.cardbody .btn{font-size:11px;padding:8px 5px!important;overflow-wrap:anywhere}}
+</style>
+</head>
+<body>
+<header class="top"><div class="nav">
+  <div class="brand"><div class="logo">Z</div><div>ZIZO <span style="color:var(--accent)">CAR PARKING</span><div style="font-size:10px;color:var(--muted);font-weight:normal;margin-top:3px">حسابات وخدمات وبيع سيارات</div></div></div>
+  <div class="nav-actions"><button class="btn secondary" id="searchOpen">⌕ البحث</button></div>
+</div></header>
+<main>
+  <section class="hero"><span class="tag">🌐 سوق Car Parking</span><h1>حسابات وخدمات <span style="color:var(--accent)">Car Parking</span> في مكان واحد</h1><p>تصفح المعروضات واختار اللي يناسبك. تقدر تشوف السيارات والحسابات والخدمات المتاحة بسهولة.</p></section>
+  <div class="section-head"><h2>✨ المعروضات</h2><span class="count" id="count">0 إعلان</span></div>
+  <div class="filters" id="filters"><button class="filter active" data-filter="الكل">الكل</button><button class="filter" data-filter="سيارة">🚘 سيارات</button><button class="filter" data-filter="حساب">🎮 حسابات</button><button class="filter" data-filter="خدمة">🛠️ خدمات</button></div>
+  <section class="grid" id="listings"></section>
+  <section class="hero" style="margin-top:28px;padding:22px"><span class="tag">📞 تواصل معنا</span><h2 style="margin:12px 0">عندك سؤال أو عايز تشتري؟</h2><p>تواصل معانا مباشرة على تلجرام أو واتساب.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px"><a class="btn" style="text-decoration:none" href="https://t.me/yee_3o" target="_blank" rel="noopener">✈️ تلجرام @yee_3o</a><a class="btn" style="text-decoration:none;background:#20c878;color:#04150c" href="https://wa.me/201010011733" target="_blank" rel="noopener">واتساب 01010011733</a></div></section>
+  <div class="footer">ZIZO CAR PARKING · كل الحقوق محفوظة</div>
+</main>
+
+<div class="modal" id="searchModal"><div class="dialog" style="max-width:420px">
+  <div class="dialog-head"><h2>⌕ البحث</h2><button class="close" data-close="searchModal">×</button></div>
+  <p class="hint">اكتب كلمة البحث لفتح لوحة التحكم.</p>
+  <form id="searchForm"><div class="field"><label for="searchTerm">كلمة البحث</label><input id="searchTerm" autocomplete="off" placeholder="اكتب هنا..." required></div><button class="btn" type="submit" style="width:100%">بحث</button></form>
+</div></div>
+
+<div class="modal" id="loginModal"><div class="dialog" style="max-width:420px">
+  <div class="dialog-head"><h2>🔐 دخول لوحة التحكم</h2><button class="close" data-close="loginModal">×</button></div>
+  <form id="loginForm"><div class="field"><label for="adminPass">كلمة المرور</label><input id="adminPass" type="password" placeholder="كلمة المرور" required></div><button class="btn" type="submit" style="width:100%">دخول</button></form>
+  <p class="hint">للتجربة الأولية: كلمة المرور هي <b>zizo</b>. غيّرها في الكود قبل نشر الموقع.</p>
+</div></div>
+
+<div class="modal" id="adminModal"><div class="dialog">
+  <div class="dialog-head"><h2>⚙️ لوحة التحكم</h2><button class="close" data-close="adminModal">×</button></div>
+  <p class="hint">أضف سيارة أو حسابًا أو خدمة، وسيظهر الإعلان في الصفحة الرئيسية.</p>
+  <form id="itemForm">
+    <div class="two">
+      <div class="field"><label for="itemType">نوع الإعلان</label><select id="itemType"><option>سيارة</option><option>حساب</option><option>خدمة</option></select></div>
+      <div class="field"><label for="itemTitle">اسم الإعلان</label><input id="itemTitle" placeholder="مثال: سيارة لامبورجيني" required maxlength="80"></div>
+    </div>
+    <div class="two">
+      <div class="field"><label for="itemPrice">السعر (جنيه)</label><input id="itemPrice" type="number" min="0" placeholder="500" required></div>
+      <div class="field"><label for="itemImage">اختار الصورة من الاستديو</label><input id="itemImage" type="file" accept="image/*"></div>
+    </div>
+    <div class="field"><label for="itemDesc">الوصف</label><textarea id="itemDesc" placeholder="اكتب تفاصيل الإعلان..."></textarea></div>
+    <button class="btn" type="submit">＋ إضافة الإعلان</button>
+  </form>
+  <div class="section-head"><h2 style="font-size:17px">إدارة الإعلانات</h2><span class="count" id="adminCount"></span></div>
+  <div class="admin-list" id="adminList"></div>
+  <p class="hint">تنبيه: هذه نسخة تجريبية تحفظ الإعلانات والصور على نفس المتصفح فقط. الموقع العام بقاعدة بيانات مشتركة يحتاج استضافة وBackend.</p>
+  <button class="btn secondary" id="logout" style="margin-top:10px">تسجيل خروج</button>
+</div></div>
+<div class="toast" id="toast"></div>
+<script>
+const STORAGE_KEY='zizo_car_parking_items_v1';
+let activeFilter='الكل';
+let items=[];
+try { items=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]'); if(!Array.isArray(items))items=[]; } catch(e){items=[];}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(items));}catch(e){notify('مساحة التخزين ممتلئة، استخدم روابط صور أصغر.');}}
+function notify(message){const t=$('toast');t.textContent=message;t.style.display='block';setTimeout(()=>t.style.display='none',2400);}
+function openModal(id){$(id).classList.add('show');}
+function closeModal(id){$(id).classList.remove('show');}
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
+$('searchOpen').addEventListener('click',()=>{ $('searchTerm').value=''; openModal('searchModal'); setTimeout(()=>$('searchTerm').focus(),80);});
+$('searchForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if($('searchTerm').value.trim().toLowerCase()==='zizo'){
+    closeModal('searchModal');$('adminPass').value='';openModal('loginModal');
+  }else{notify('لا توجد نتائج مطابقة');}
+});
+$('loginForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if($('adminPass').value==='zizo'){closeModal('loginModal');openModal('adminModal');renderAdmin();}
+  else notify('كلمة المرور غير صحيحة');
+});
+$('logout').addEventListener('click',()=>closeModal('adminModal'));
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{
+  activeFilter=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x===b));render();
+}));
+$('itemForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const title=$('itemTitle').value.trim(),price=Number($('itemPrice').value),file=$('itemImage').files[0];
+  if(!title||!Number.isFinite(price)||price<0)return notify('راجع الاسم والسعر');
+  const addItem=(image='')=>{
+    items.unshift({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),type:$('itemType').value,title,price,image,desc:$('itemDesc').value.trim()});
+    save();$('itemForm').reset();render();renderAdmin();notify('تمت إضافة الإعلان بنجاح');
+  };
+  if(file){
+    if(!file.type.startsWith('image/'))return notify('اختار ملف صورة');
+    if(file.size>1800000)return notify('الصورة كبيرة؛ اختار صورة أقل من 1.8 ميجابايت');
+    const reader=new FileReader(); reader.onload=()=>addItem(reader.result); reader.onerror=()=>notify('حصلت مشكلة في قراءة الصورة'); reader.readAsDataURL(file);
+  } else addItem();
+});
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));}
+function render(){
+  const shown=items.filter(x=>activeFilter==='الكل'||x.type===activeFilter);
+  $('count').textContent=shown.length+' إعلان';
+  const root=$('listings');
+  if(!shown.length){root.innerHTML='<div class="empty">🚘<br><br>مفيش إعلانات لسه في القسم ده<br><span style="font-size:12px">تابعنا، الإعلانات الجديدة هتظهر هنا</span></div>';return;}
+  root.innerHTML=shown.map(x=>`<article class="card"><div class="photo">${x.image?`<img src="${escapeHtml(x.image)}" alt="${escapeHtml(x.title)}" loading="lazy" onerror="this.parentElement.innerHTML='🚘'">`:'📷'}</div><div class="cardbody"><span class="type">${escapeHtml(x.type)}</span><h3>${escapeHtml(x.title)}</h3><div class="desc">${escapeHtml(x.desc||'تفاصيل الإعلان متاحة عند التواصل.')}</div><div class="price">${Number(x.price).toLocaleString('en-US')} ج.م</div><div style="display:flex;gap:8px;margin-top:13px;flex-wrap:wrap"><a class="btn" style="text-decoration:none;text-align:center;flex:1;padding:9px 10px" href="https://t.me/yee_3o?text=${encodeURIComponent('السلام عليكم، مهتم بإعلان: '+x.title+' - السعر '+x.price+' ج.م')}" target="_blank" rel="noopener">✈️ تواصل تلجرام</a><a class="btn" style="text-decoration:none;text-align:center;flex:1;padding:9px 10px;background:#20c878;color:#04150c" href="https://wa.me/201010011733?text=${encodeURIComponent('السلام عليكم، مهتم بإعلان: '+x.title+' - السعر '+x.price+' ج.م')}" target="_blank" rel="noopener">واتساب</a></div></div></article>`).join('');
+}
+function renderAdmin(){
+  $('adminCount').textContent=items.length+' إعلان';
+  $('adminList').innerHTML=items.length?items.map(x=>`<div class="admin-row"><div><b>${escapeHtml(x.title)}</b><small>${escapeHtml(x.type)} · ${Number(x.price).toLocaleString('en-US')} ج.م</small></div><button class="btn danger" data-delete="${escapeHtml(x.id)}">حذف</button></div>`).join(''):'<div class="empty">لا توجد إعلانات حتى الآن</div>';
+  $('adminList').querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',()=>{items=items.filter(x=>x.id!==b.dataset.delete);save();render();renderAdmin();notify('تم حذف الإعلان');}));
+}
+render();
+</script>
+</body>
+</html>
